@@ -20,7 +20,7 @@ function textFromMarkdown(markdown) {
 export function createSearchIndex(sections) {
   return sections.map((section) => ({
     ...section,
-    pages: section.pages.map((page) => ({
+    pages: section.pages.filter((page) => !page.hidden).map((page) => ({
       ...page,
       searchText: `${section.label} ${page.groupLabel || ''} ${page.contentType || ''} ${page.label} ${textFromMarkdown(page.content)}`.toLowerCase(),
     })),

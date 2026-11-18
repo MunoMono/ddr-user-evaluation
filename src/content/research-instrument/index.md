@@ -1,4 +1,4 @@
-# Research Instrument
+# Research instrument
 
 This section is reserved for research instrument documentation. Content will be added when it is ready for publication.
 

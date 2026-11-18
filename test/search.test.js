@@ -4,17 +4,18 @@ import { createSearchIndex, searchDocumentation } from '../src/utils/search.js'
 
 const index = createSearchIndex([
   {
-    label: 'DDR Public',
+    label: 'DDR public',
     path: '/ddr-public',
     pages: [
-      { label: 'Introduction', path: '/ddr-public', contentType: 'User Guide', groupLabel: 'User Guide', content: '# Welcome\n\nFind **approved** screenshots here.' },
+      { label: 'Introduction', path: '/ddr-public', contentType: 'User guide', groupLabel: 'User guide', content: '# Welcome\n\nFind **approved** screenshots here.' },
       { label: 'Example', path: '/ddr-public/example', content: 'A placeholder.' },
+      { label: 'Retired example', path: '/ddr-public/retired', content: 'Retired material.', hidden: true },
     ],
   },
   {
-    label: 'DDR Admin',
+    label: 'DDR admin',
     path: '/ddr-admin',
-    pages: [{ label: 'Introduction', path: '/ddr-admin', contentType: 'Evaluation Task', groupLabel: 'Evaluation Tasks', content: 'Admin guidance.' }],
+    pages: [{ label: 'Introduction', path: '/ddr-admin', contentType: 'Evaluation task', groupLabel: 'Evaluation tasks', content: 'Admin guidance.' }],
   },
 ])
 
@@ -32,4 +33,5 @@ test('search finds section, page and Markdown content without case sensitivity',
 test('empty searches show all pages and unmatched searches show no results', () => {
   assert.equal(searchDocumentation(index, '  ').reduce((count, section) => count + section.pages.length, 0), 3)
   assert.deepEqual(searchDocumentation(index, 'no-such-page'), [])
+  assert.deepEqual(searchDocumentation(index, 'retired'), [])
 })

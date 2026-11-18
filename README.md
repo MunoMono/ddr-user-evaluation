@@ -1,6 +1,6 @@
 # DDR user evaluation
 
-A public documentation framework for the DDR user evaluation, built with React, Vite, React Router and the IBM Carbon Design System. The documentation is placeholder material, not instructions for the underlying research applications.
+A public documentation framework for the DDR user evaluation, built with React, Vite, React Router and the IBM Carbon Design System. Some pages remain placeholders.
 
 ## Setup and development
 
@@ -27,18 +27,22 @@ Use the Carbon 11 components, theme, spacing and typography tokens. Put componen
 
 ## Authoring documentation
 
-Each application has three groups: **User Guide**, **Evaluation Tasks** and **Evaluation Information**. Their existing pages and three illustrative DDR Public examples are placeholders, not approved procedures or evaluation materials.
+Each application has three groups: **User guide**, **Evaluation tasks** and **Evaluation information**. Illustrative evaluation and procedural pages remain placeholders, not approved evaluation materials.
+
+The landing-page copy is in `src/content/home.md`. The application navigation tiles are generated from `src/content/navigation.js`.
 
 To create a page:
 
 1. Add a Markdown file under the appropriate application in `src/content/`. Use British English, one level-one heading for its title and level-two headings for its sections. These headings automatically populate “On this page”.
-2. Import the file with Vite's `?raw` suffix in `src/content/navigation.js`, then add its `label`, `path` and `content` to the appropriate group's `pages` array. The order of pages in that array controls navigation and previous/next links. The first User Guide page should retain the application's existing root path.
+2. Import the file with Vite's `?raw` suffix in `src/content/navigation.js`, then add its `label`, `path` and `content` to the appropriate group's `pages` array. The order of pages in that array controls navigation and previous/next links. The first User guide page should retain the application's existing root path. Set `hidden: true` to retain an existing page's direct URL without including it in navigation, search or previous/next links.
 3. Use a root-relative route for an internal Markdown link, for example `[Introduction](/ddr-public)`, and an `https://` URL for an external link. Check links in the local preview.
 4. Run `npm run dev`, review the page in both themes and on a small screen, then run `npm test` and `npm run build`.
 
 For a procedure, use the relevant parts of the example “Finding a record in the archive”: introduction, what the reader will learn, prerequisites, numbered steps, screenshots, expected result and troubleshooting. Omit headings that are not useful. Use Markdown blockquotes for tips, notes and warnings.
 
-For an evaluation task, register it in **Evaluation Tasks**. State the task identifier, context, objective, activity and appropriate prerequisites without teaching the actions or answers under investigation. Review any links and previous/next ordering for methodological impact. Previous/next links stay within the same content group. For participant-facing arrangements, add a page to **Evaluation Information** only after its wording has been reviewed.
+For an evaluation task, register it in **Evaluation tasks**. State the task identifier, context, objective, activity and appropriate prerequisites without teaching the actions or answers under investigation. Review any links and previous/next ordering for methodological impact. Previous/next links stay within the same content group. For participant-facing arrangements, add a page to **Evaluation information** only after its wording has been reviewed.
+
+For DDR public's “Explore an archival record”, the participant-facing task is `src/content/ddr-public/evaluation-tasks/explore-an-archival-record/task.md`. Its separate draft procedure is `src/content/ddr-public/evaluation-tasks/explore-an-archival-record/standard-operating-procedure.md`, with screenshots in `public/images/ddr-public/evaluation-tasks/explore-an-archival-record/`. The procedure is not registered as a website page or linked from the task. Review its content and its suitability for participants before registering it as a User guide page. All files in this repository are public, including unregistered drafts. Use the same task-specific content and image folder pattern for future evaluation tasks.
 
 The table of contents and reading pane scroll independently; on very short mobile screens the page scrolls normally. Search is local to the browser and searches application and group names, page titles and Markdown text. Registered pages are included automatically.
 
@@ -49,6 +53,8 @@ Store approved images in `public/images/ddr-public/`, `public/images/ddr-admin/`
 ```md
 ![Describe what the screenshot shows](/images/ddr-public/example.png "A visible caption")
 ```
+
+For the “Explore an archival record” procedure, use paths such as `/images/ddr-public/evaluation-tasks/explore-an-archival-record/example.png`.
 
 Alternative text is required; describe the image rather than repeating “screenshot”. The optional title becomes the caption; otherwise the alternative text is used. Figures are numbered automatically in page order. Readers can select an image to enlarge it, scroll the enlarged image, and close it with Escape or the close button.
 

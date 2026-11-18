@@ -1,6 +1,6 @@
-# DDR Admin
+# DDR admin
 
-This section is reserved for DDR Admin documentation. Content will be added when it is ready for publication.
+This section is reserved for DDR admin documentation. Content will be added when it is ready for publication.
 
 ## Introduction
 

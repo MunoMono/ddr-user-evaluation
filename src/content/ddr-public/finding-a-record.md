@@ -1,6 +1,6 @@
 # Finding a record in the archive
 
-> **Illustrative guide:** This page shows the documentation format. It is not yet a verified procedure for DDR Public.
+> **Illustrative guide:** This page shows the documentation format. It is not yet a verified procedure for DDR public.
 
 ## What you will learn
 

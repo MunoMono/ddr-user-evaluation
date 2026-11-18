@@ -74,8 +74,9 @@ function PageMetadata({ section, page }) {
 }
 
 function PageLinks({ section, page }) {
-  const pages = section.pages.filter((entry) => entry.groupLabel === page.groupLabel)
+  const pages = section.pages.filter((entry) => entry.groupLabel === page.groupLabel && !entry.hidden)
   const index = pages.findIndex((entry) => entry.path === page.path)
+  if (index === -1) return null
   const previous = pages[index - 1]
   const next = pages[index + 1]
   if (!previous && !next) return null
