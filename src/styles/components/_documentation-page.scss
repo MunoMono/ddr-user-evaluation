@@ -144,18 +144,28 @@
 }
 
 .documentation-page-links {
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: space-between;
-  gap: $spacing-06;
-  max-width: 48rem;
-  margin-top: $spacing-09;
-  padding-top: $spacing-06;
-  border-top: 1px solid var(--cds-border-subtle-01);
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  background: var(--cds-layer-01);
 
   a {
-    @include type-style('body-01');
-    color: var(--cds-link-primary);
+    @include type-style('heading-03');
+    display: block;
+    min-width: 0;
+    min-height: $spacing-10 * 2;
+    padding: $spacing-05;
+    color: var(--cds-text-primary);
+    overflow-wrap: anywhere;
+    text-decoration: none;
+
+    &:hover {
+      background: var(--cds-layer-hover-01);
+    }
+
+    &:focus-visible {
+      outline: 2px solid var(--cds-focus);
+      outline-offset: -2px;
+    }
   }
 
   span {
@@ -166,37 +176,12 @@
   }
 }
 
-.documentation-contents {
-  padding: 0 $spacing-05 $spacing-07;
+.documentation-page-links__previous {
+  grid-column: 1;
+}
 
-  nav {
-    border-left: 1px solid var(--cds-border-subtle-01);
-    padding-left: $spacing-05;
-  }
-
-  h2 {
-    @include type-style('heading-compact-01');
-    margin-bottom: $spacing-04;
-  }
-
-  ul {
-    list-style: none;
-    margin: 0;
-    padding: 0;
-  }
-
-  li + li {
-    margin-top: $spacing-03;
-  }
-
-  > ol > li + li {
-    margin-top: $spacing-06;
-  }
-
-  a {
-    @include type-style('body-compact-01');
-    color: var(--cds-link-primary);
-  }
+.documentation-page-links__next {
+  grid-column: 2;
 }
 
 .markdown {
@@ -288,19 +273,12 @@
     padding: $spacing-07;
   }
 
-  .documentation-contents {
-    padding-left: $spacing-07;
-  }
 }
 
 @include breakpoint(lg) {
   .documentation-body {
     display: grid;
-    grid-template-columns: minmax(0, 1fr) 12rem;
-  }
-
-  .documentation-contents {
-    padding: $spacing-07 $spacing-06 $spacing-07 0;
+    grid-template-columns: minmax(0, 1fr) 16rem;
   }
 }
 

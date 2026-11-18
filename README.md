@@ -29,7 +29,7 @@ Use the Carbon 11 components, theme, spacing and typography tokens. Put componen
 
 Each application has three groups: **User guide**, **Evaluation tasks** and **Evaluation information**. Illustrative evaluation and procedural pages remain placeholders, not approved evaluation materials.
 
-The landing-page copy is in `src/content/home.md`. The application navigation tiles are generated from `src/content/navigation.js`.
+The landing-page copy is in `src/content/home.md`. Between the `application-tiles` markers, provide one level-three linked heading and one paragraph for each application route in `src/content/navigation.js`. These entries become the clickable application tiles.
 
 To create a page:
 
@@ -40,11 +40,11 @@ To create a page:
 
 For a procedure, use the relevant parts of the example “Finding a record in the archive”: introduction, what the reader will learn, prerequisites, numbered steps, screenshots, expected result and troubleshooting. Omit headings that are not useful. Use Markdown blockquotes for tips, notes and warnings.
 
-For an evaluation task, register it in **Evaluation tasks**. State the task identifier, context, objective, activity and appropriate prerequisites without teaching the actions or answers under investigation. Review any links and previous/next ordering for methodological impact. Previous/next links stay within the same content group. For participant-facing arrangements, add a page to **Evaluation information** only after its wording has been reviewed.
+For an evaluation task, register it in **Evaluation tasks**. State the task identifier, context, objective, activity and appropriate prerequisites without teaching the actions or answers under investigation. Review any links and previous/next ordering for methodological impact. The previous/next navigation bar stays within the same content group and is omitted when there are no adjacent pages. For participant-facing arrangements, add a page to **Evaluation information** only after its wording has been reviewed.
 
 For DDR public's “Explore an archival record”, the participant-facing task is `src/content/ddr-public/evaluation-tasks/explore-an-archival-record/task.md`. Its separate draft procedure is `src/content/ddr-public/evaluation-tasks/explore-an-archival-record/standard-operating-procedure.md`, with screenshots in `public/images/ddr-public/evaluation-tasks/explore-an-archival-record/`. The procedure is not registered as a website page or linked from the task. Review its content and its suitability for participants before registering it as a User guide page. All files in this repository are public, including unregistered drafts. Use the same task-specific content and image folder pattern for future evaluation tasks.
 
-The table of contents and reading pane scroll independently; on very short mobile screens the page scrolls normally. Search is local to the browser and searches application and group names, page titles and Markdown text. Registered pages are included automatically.
+The table of contents and reading pane scroll independently; on very short mobile screens the page scrolls normally. A section navigation rail follows the reading position and highlights the current level-two heading; its links also support direct section URLs. Search is local to the browser and searches application and group names, page titles and Markdown text. Registered pages are included automatically.
 
 ### Screenshots and annotations
 

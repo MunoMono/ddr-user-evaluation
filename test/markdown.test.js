@@ -18,6 +18,12 @@ test('contents and rendered heading IDs agree for formatted and duplicate headin
     expected.map((heading) => heading.id))
 })
 
+test('heading IDs remain unique across separately rendered home sections', async () => {
+  const processor = unified().use(remarkParse).use(headingIds, { precedingMarkdown: '## Details' })
+  const tree = await processor.run(processor.parse('## Details'))
+  assert.equal(tree.children[0].data.hProperties.id, 'details-1')
+})
+
 test('local screenshot URLs respect the deployed base without changing other URLs', () => {
   assert.equal(imageUrl('/images/ddr-public/example.png', '/ddr-user-evaluation/'), '/ddr-user-evaluation/images/ddr-public/example.png')
   assert.equal(imageUrl('https://example.com/image.png', '/ddr-user-evaluation/'), 'https://example.com/image.png')

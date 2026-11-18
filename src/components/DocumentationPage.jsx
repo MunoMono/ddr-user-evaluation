@@ -6,6 +6,7 @@ import { contentTypes, sections } from '../content/navigation.js'
 import { figureNumbers, headingIds, imageUrl, pageContents } from '../utils/markdown.js'
 import { createSearchIndex, searchDocumentation } from '../utils/search.js'
 import ScreenshotFigure, { ScreenshotPlaceholder } from './ScreenshotFigure.jsx'
+import PageContents from './PageContents.jsx'
 
 const searchIndex = createSearchIndex(sections)
 const resolveUrl = (url) => defaultUrlTransform(imageUrl(url, import.meta.env.BASE_URL))
@@ -83,8 +84,12 @@ function PageLinks({ section, page }) {
 
   return (
     <nav className="documentation-page-links" aria-label={`More pages in ${page.groupLabel}`}>
-      {previous && <Link to={previous.path}><span>Previous</span>{previous.label}</Link>}
-      {next && <Link to={next.path}><span>Next</span>{next.label}</Link>}
+      {previous && <Link className="documentation-page-links__previous" to={previous.path}>
+        <span>Previous</span>{previous.label}
+      </Link>}
+      {next && <Link className="documentation-page-links__next" to={next.path}>
+        <span>Next</span>{next.label}
+      </Link>}
     </nav>
   )
 }
@@ -92,6 +97,7 @@ function PageLinks({ section, page }) {
 export default function DocumentationPage({ section, page }) {
   const [query, setQuery] = useState('')
   const readingRef = useRef(null)
+  const contentRef = useRef(null)
   const contents = useMemo(() => pageContents(page.content), [page.content])
   const results = useMemo(() => searchDocumentation(searchIndex, query), [query])
   const resultCount = results.reduce((count, item) => count + item.pages.length, 0)
@@ -134,7 +140,7 @@ export default function DocumentationPage({ section, page }) {
       <div className="documentation-reading" ref={readingRef}
         role="region" aria-label="Documentation page" tabIndex={0}>
         <div className="documentation-body">
-          <div className="documentation-main">
+          <div className="documentation-main" ref={contentRef}>
             <Breadcrumb noTrailingSlash className="documentation-breadcrumb">
               <BreadcrumbItem><Link to="/">Home</Link></BreadcrumbItem>
               <BreadcrumbItem><Link to={section.path}>{section.label}</Link></BreadcrumbItem>
@@ -174,19 +180,10 @@ export default function DocumentationPage({ section, page }) {
                 {page.content}
               </ReactMarkdown>
             </article>
-            <PageLinks section={section} page={page} />
           </div>
-          {contents.length > 0 && (
-            <aside className="documentation-contents">
-              <nav aria-label="On this page">
-                <h2>On this page</h2>
-                <ul>{contents.map((heading) => (
-                  <li key={heading.id}><a href={`#${encodeURIComponent(heading.id)}`}>{heading.text}</a></li>
-                ))}</ul>
-              </nav>
-            </aside>
-          )}
+          <PageContents headings={contents} contentRef={contentRef} scrollRootRef={readingRef} />
         </div>
+        <PageLinks section={section} page={page} />
       </div>
     </div>
   )

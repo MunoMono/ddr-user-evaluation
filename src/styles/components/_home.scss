@@ -1,5 +1,26 @@
 @use '@carbon/react/scss/spacing' as *;
 @use '@carbon/react/scss/type' as *;
+@use '@carbon/react/scss/breakpoint' as *;
+
+.home-layout {
+  max-width: 99rem;
+  margin-inline: auto;
+}
+
+.home-main {
+  min-width: 0;
+}
+
+@include breakpoint(lg) {
+  .home-layout {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) 16rem;
+
+    .page-contents nav {
+      top: $spacing-11;
+    }
+  }
+}
 
 .home-hero {
   padding-block: $spacing-10 $spacing-11;
@@ -13,7 +34,16 @@
 }
 
 .home-sections {
-  padding-block: $spacing-09 $spacing-12;
+  padding-block: $spacing-09 $spacing-05;
+}
+
+.home-details {
+  padding-bottom: $spacing-12;
+
+  .markdown ul.cds--list--unordered {
+    margin-inline-start: $spacing-05;
+    padding-left: 0;
+  }
 }
 
 .section-tile.cds--tile {
@@ -35,9 +65,15 @@
     color: var(--cds-text-secondary);
   }
 
-  .cds--btn {
-    margin: auto 0 (-$spacing-04) (-$spacing-05);
-  }
+}
+
+.section-tile__action {
+  @include type-style('body-compact-01');
+  display: flex;
+  align-items: center;
+  gap: $spacing-03;
+  margin-top: $spacing-06;
+  color: var(--cds-link-primary);
 }
 
 .section-tile__number {

@@ -8,8 +8,7 @@ function visitHeadings(node, callback) {
   for (const child of node.children || []) visitHeadings(child, callback)
 }
 
-export function annotateHeadings(tree) {
-  const slugger = new GithubSlugger()
+export function annotateHeadings(tree, slugger = new GithubSlugger()) {
   const contents = []
   visitHeadings(tree, (heading) => {
     const text = toString(heading)
@@ -25,8 +24,12 @@ export function pageContents(markdown) {
   return annotateHeadings(unified().use(remarkParse).parse(markdown))
 }
 
-export function headingIds() {
-  return (tree) => { annotateHeadings(tree) }
+export function headingIds({ precedingMarkdown } = {}) {
+  return (tree) => {
+    const slugger = new GithubSlugger()
+    if (precedingMarkdown) annotateHeadings(unified().use(remarkParse).parse(precedingMarkdown), slugger)
+    annotateHeadings(tree, slugger)
+  }
 }
 
 export function figureNumbers() {
