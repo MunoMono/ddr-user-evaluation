@@ -1,0 +1,15 @@
+@use '@carbon/react/scss/spacing' as *;
+@use '@carbon/react/scss/type' as *;
+
+.not-found {
+  padding-block: $spacing-10;
+
+  h1 {
+    @include type-style('heading-05');
+    margin: $spacing-05 0;
+  }
+
+  p:not(.eyebrow) {
+    margin-bottom: $spacing-06;
+  }
+}

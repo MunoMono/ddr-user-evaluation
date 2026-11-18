@@ -1,0 +1,60 @@
+@use '@carbon/react/scss/spacing' as *;
+@use '@carbon/react/scss/type' as *;
+@use '@carbon/react/scss/breakpoint' as *;
+
+.app-shell {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+}
+
+.app-shell__content.cds--content {
+  flex: 1;
+  margin: $spacing-09 0 0;
+  padding: 0;
+  background: var(--cds-background);
+
+  &:focus {
+    outline: none;
+  }
+}
+
+.app-shell--documentation {
+  height: 100dvh;
+  min-height: 0;
+  overflow: hidden;
+
+  .app-shell__content.cds--content {
+    display: flex;
+    min-height: 0;
+  }
+
+  .site-footer {
+    flex-shrink: 0;
+  }
+}
+
+.site-footer {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  gap: $spacing-04;
+  padding: $spacing-06;
+  border-top: 1px solid var(--cds-border-subtle-01);
+  color: var(--cds-text-secondary);
+  @include type-style('label-01');
+}
+
+@include breakpoint-down(md) {
+  @media (max-height: 32rem) {
+    .app-shell--documentation {
+      height: auto;
+      min-height: 100vh;
+      overflow: visible;
+
+      .app-shell__content.cds--content {
+        display: block;
+      }
+    }
+  }
+}

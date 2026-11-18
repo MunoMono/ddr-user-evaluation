@@ -1,0 +1,20 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="description" content="Documentation for the DDR user evaluation environment." />
+    <title>DDR user evaluation</title>
+    <script>
+      // Restore the original URL passed by GitHub Pages' 404 fallback before the router starts.
+      const redirect = new URLSearchParams(window.location.search).get('__pages_path')
+      if (redirect && redirect.startsWith('/ddr-user-evaluation/')) {
+        window.history.replaceState(null, '', redirect)
+      }
+    </script>
+  </head>
+  <body>
+    <div id="root"></div>
+    <script type="module" src="/src/main.jsx"></script>
+  </body>
+</html>
