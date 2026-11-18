@@ -2,7 +2,7 @@ import assert from 'node:assert/strict'
 import test from 'node:test'
 import { unified } from 'unified'
 import remarkParse from 'remark-parse'
-import { headingIds, imageUrl, pageContents } from '../src/utils/markdown.js'
+import { figureNumbers, headingIds, imageUrl, pageContents } from '../src/utils/markdown.js'
 
 test('contents and rendered heading IDs agree for formatted and duplicate headings', async () => {
   const markdown = '# Title\n\n## **First** step\n\n### Detail\n\n## First step\n\n## Résumé'
@@ -21,4 +21,15 @@ test('contents and rendered heading IDs agree for formatted and duplicate headin
 test('local screenshot URLs respect the deployed base without changing other URLs', () => {
   assert.equal(imageUrl('/images/ddr-public/example.png', '/ddr-user-evaluation/'), '/ddr-user-evaluation/images/ddr-public/example.png')
   assert.equal(imageUrl('https://example.com/image.png', '/ddr-user-evaluation/'), 'https://example.com/image.png')
+})
+
+test('figure numbering includes standalone images and placeholders but not inline images', async () => {
+  const markdown = '![First](/images/first.png "First caption")\n\nText ![inline](/inline.png).\n\n```screenshot-placeholder\nSecond caption\n```\n\n![Third](/images/third.png)'
+  const processor = unified().use(remarkParse).use(figureNumbers)
+  const tree = await processor.run(processor.parse(markdown))
+  assert.equal(tree.children[0].children[0].data.hProperties['data-figure-number'], 1)
+  assert.equal(tree.children[0].children[0].data.hProperties['data-image-key'], '/images/first.png')
+  assert.equal(tree.children[1].children[1].data, undefined)
+  assert.equal(tree.children[2].data.hProperties['data-figure-number'], 2)
+  assert.equal(tree.children[3].children[0].data.hProperties['data-figure-number'], 3)
 })

@@ -1,0 +1,102 @@
+@use 'sass:math';
+@use '@carbon/react/scss/colors' as *;
+@use '@carbon/react/scss/spacing' as *;
+@use '@carbon/react/scss/type' as *;
+
+.markdown .screenshot {
+  margin: $spacing-07 0;
+}
+
+.screenshot__trigger {
+  display: block;
+  max-width: 100%;
+  padding: 0;
+  border: 0;
+  background: transparent;
+  cursor: zoom-in;
+  text-align: left;
+
+  &:focus-visible {
+    outline: 2px solid var(--cds-focus);
+    outline-offset: $spacing-02;
+  }
+}
+
+.screenshot__image {
+  position: relative;
+  display: inline-block;
+  max-width: 100%;
+  line-height: 0;
+
+  img {
+    display: block;
+    max-width: 100%;
+    height: auto;
+    border: 1px solid var(--cds-border-subtle-01);
+  }
+}
+
+.screenshot__marker {
+  @include type-style('label-01');
+  @include font-weight('semibold');
+  position: absolute;
+  display: grid;
+  width: $spacing-06;
+  height: $spacing-06;
+  place-items: center;
+  transform: translate(-50%, -50%);
+  border: 1px solid $white-0;
+  border-radius: 50%;
+  background: $blue-60;
+  color: $white-0;
+  line-height: 1;
+}
+
+@for $position from 0 through 100 {
+  .screenshot__x-#{$position} {
+    left: clamp(#{$spacing-04}, #{math.percentage(math.div($position, 100))}, calc(100% - #{$spacing-04}));
+  }
+
+  .screenshot__y-#{$position} {
+    top: clamp(#{$spacing-04}, #{math.percentage(math.div($position, 100))}, calc(100% - #{$spacing-04}));
+  }
+}
+
+.screenshot__hint {
+  @include type-style('helper-text-01');
+  display: flex;
+  align-items: center;
+  gap: $spacing-02;
+  margin: $spacing-03 0;
+  color: var(--cds-text-secondary);
+}
+
+.screenshot__annotations {
+  @include type-style('body-01');
+  margin: $spacing-04 0;
+  padding-left: $spacing-07;
+}
+
+.screenshot__enlarged {
+  max-width: 100%;
+  overflow: auto;
+}
+
+.screenshot__image--enlarged {
+  max-width: none;
+
+  img {
+    max-width: none;
+  }
+}
+
+.screenshot__placeholder {
+  @include type-style('body-01');
+  display: grid;
+  min-height: $spacing-13;
+  place-items: center;
+  padding: $spacing-06;
+  border: 1px dashed var(--cds-border-strong-01);
+  background: var(--cds-layer-01);
+  color: var(--cds-text-secondary);
+}

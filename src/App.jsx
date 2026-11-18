@@ -1,12 +1,12 @@
-import { useEffect, useState } from 'react'
-import { Button, Column, GlobalTheme, Grid, Tile } from '@carbon/react'
+import { lazy, Suspense, useEffect, useState } from 'react'
+import { Button, Column, GlobalTheme, Grid, InlineLoading, Tile } from '@carbon/react'
 import { ArrowRight } from '@carbon/icons-react'
 import { Link, Route, Routes } from 'react-router-dom'
 import AppShell from './components/AppShell.jsx'
-import DocumentationPage from './components/DocumentationPage.jsx'
 import { sections } from './content/navigation.js'
 
 const STORAGE_KEY = 'ddr-user-evaluation-theme'
+const DocumentationPage = lazy(() => import('./components/DocumentationPage.jsx'))
 
 function initialTheme() {
   const stored = window.localStorage.getItem(STORAGE_KEY)
@@ -84,7 +84,11 @@ export default function App() {
             <Route path="/" element={<Home />} />
             {sections.flatMap((section) => section.pages.map((page) => (
               <Route key={page.path} path={page.path}
-                element={<DocumentationPage section={section} page={page} />} />
+                element={
+                  <Suspense fallback={<InlineLoading description="Loading documentation" />}>
+                    <DocumentationPage section={section} page={page} />
+                  </Suspense>
+                } />
             )))}
             <Route path="*" element={<NotFound />} />
           </Routes>

@@ -7,14 +7,14 @@ const index = createSearchIndex([
     label: 'DDR Public',
     path: '/ddr-public',
     pages: [
-      { label: 'Introduction', path: '/ddr-public', content: '# Welcome\n\nFind **approved** screenshots here.' },
+      { label: 'Introduction', path: '/ddr-public', contentType: 'User Guide', groupLabel: 'User Guide', content: '# Welcome\n\nFind **approved** screenshots here.' },
       { label: 'Example', path: '/ddr-public/example', content: 'A placeholder.' },
     ],
   },
   {
     label: 'DDR Admin',
     path: '/ddr-admin',
-    pages: [{ label: 'Introduction', path: '/ddr-admin', content: 'Admin guidance.' }],
+    pages: [{ label: 'Introduction', path: '/ddr-admin', contentType: 'Evaluation Task', groupLabel: 'Evaluation Tasks', content: 'Admin guidance.' }],
   },
 ])
 
@@ -25,6 +25,8 @@ test('search finds section, page and Markdown content without case sensitivity',
     ['/ddr-admin'])
   assert.deepEqual(searchDocumentation(index, 'example').flatMap((section) => section.pages.map((page) => page.path)),
     ['/ddr-public/example'])
+  assert.deepEqual(searchDocumentation(index, 'evaluation tasks').flatMap((section) => section.pages.map((page) => page.path)),
+    ['/ddr-admin'])
 })
 
 test('empty searches show all pages and unmatched searches show no results', () => {

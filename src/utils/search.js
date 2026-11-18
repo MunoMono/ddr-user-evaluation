@@ -22,7 +22,7 @@ export function createSearchIndex(sections) {
     ...section,
     pages: section.pages.map((page) => ({
       ...page,
-      searchText: `${section.label} ${page.label} ${textFromMarkdown(page.content)}`.toLowerCase(),
+      searchText: `${section.label} ${page.groupLabel || ''} ${page.contentType || ''} ${page.label} ${textFromMarkdown(page.content)}`.toLowerCase(),
     })),
   }))
 }

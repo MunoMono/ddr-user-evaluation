@@ -29,6 +29,28 @@ export function headingIds() {
   return (tree) => { annotateHeadings(tree) }
 }
 
+export function figureNumbers() {
+  return (tree) => {
+    let number = 0
+    function visit(node) {
+      if (node.type === 'paragraph' && node.children?.length === 1 && node.children[0].type === 'image') {
+        const image = node.children[0]
+        image.data ||= {}
+        image.data.hProperties = {
+          ...image.data.hProperties,
+          'data-figure-number': ++number,
+          'data-image-key': image.url,
+        }
+      } else if (node.type === 'code' && node.lang === 'screenshot-placeholder') {
+        node.data ||= {}
+        node.data.hProperties = { ...node.data.hProperties, 'data-figure-number': ++number }
+      }
+      for (const child of node.children || []) visit(child)
+    }
+    visit(tree)
+  }
+}
+
 export function imageUrl(url, base) {
   return url.startsWith('/images/') ? `${base}${url.slice(1)}` : url
 }
