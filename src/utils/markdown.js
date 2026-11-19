@@ -32,6 +32,24 @@ export function headingIds({ precedingMarkdown } = {}) {
   }
 }
 
+export function standaloneLinks() {
+  return (tree) => {
+    function visit(node) {
+      if (node.type === 'paragraph') {
+        const content = node.children.filter((child) => child.type !== 'text' || child.value.trim())
+        const link = content.length === 1 ? content[0] : null
+        if ((link?.type === 'link' || link?.type === 'linkReference')
+            && !link.children.some((child) => child.type === 'image')) {
+          link.data ||= {}
+          link.data.hProperties = { ...link.data.hProperties, 'data-standalone': true }
+        }
+      }
+      for (const child of node.children || []) visit(child)
+    }
+    visit(tree)
+  }
+}
+
 export function figureNumbers() {
   return (tree) => {
     let number = 0

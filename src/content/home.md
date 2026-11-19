@@ -1,15 +1,6 @@
-
-# DDR user evaluation
-
-## Welcome
+# DDR research apparatus and instrument user evaluation
 
 This website provides guidance and supporting information for exploring three digital research applications developed as part of a practice-led PhD at the Royal College of Art.
-
-The research examines the history of the RCA's Department of Design Research (1965–1985), investigating how surviving archival materials can be made more accessible, connected and useful for contemporary inquiry.
-
-The applications bring together archival description, digital access and computational approaches to investigating historical evidence.
-
-## Explore the research environment
 
 <!-- application-tiles -->
 

@@ -2,7 +2,7 @@ import { useEffect, useRef, useState } from 'react'
 import {
   Content, Header, HeaderGlobalAction, HeaderGlobalBar, HeaderMenuButton,
   HeaderMenuItem, HeaderName, HeaderNavigation, SideNav, SideNavItems,
-  SideNavLink, SkipToContent,
+  SideNavLink, SkipToContent, Theme,
 } from '@carbon/react'
 import { Light, Moon } from '@carbon/icons-react'
 import { Link, matchPath, useLocation } from 'react-router-dom'
@@ -13,7 +13,7 @@ export default function AppShell({ children, theme, toggleTheme }) {
   const location = useLocation()
   const mainRef = useRef(null)
   const previousPath = useRef(location.pathname)
-  const isDocumentation = sections.some((section) =>
+  const isDocumentation = location.pathname === '/' || sections.some((section) =>
     section.pages.some((page) => matchPath({ path: page.path, end: true }, location.pathname)),
   )
 
@@ -29,14 +29,15 @@ export default function AppShell({ children, theme, toggleTheme }) {
   return (
     <div className={`app-shell${isDocumentation ? ' app-shell--documentation' : ''}`}>
       <SkipToContent href="#main-content" />
-      <Header aria-label="RCA PhD">
+      <Theme as={Header} theme={theme === 'g90' ? 'g100' : 'white'}
+        className="app-shell__header" aria-label="Graham Newman RCA PhD">
         <HeaderMenuButton
           aria-label={expanded ? 'Close navigation menu' : 'Open navigation menu'}
           isActive={expanded}
           aria-expanded={expanded}
           onClick={() => setExpanded(!expanded)}
         />
-        <HeaderName as={Link} to="/" prefix="">RCA PhD</HeaderName>
+        <HeaderName as={Link} to="/" prefix="">Graham Newman RCA PhD</HeaderName>
         <HeaderNavigation aria-label="Primary navigation">
           {sections.map((section) => (
             <HeaderMenuItem key={section.path} as={Link} to={section.path}
@@ -54,7 +55,7 @@ export default function AppShell({ children, theme, toggleTheme }) {
             {theme === 'g90' ? <Light size={20} /> : <Moon size={20} />}
           </HeaderGlobalAction>
         </HeaderGlobalBar>
-      </Header>
+      </Theme>
       <SideNav aria-label="Mobile navigation" expanded={expanded} isPersistent={false}
         onOverlayClick={() => setExpanded(false)}>
         <SideNavItems>

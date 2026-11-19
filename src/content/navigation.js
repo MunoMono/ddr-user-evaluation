@@ -12,6 +12,7 @@ import adminInfo from './ddr-admin/evaluation-information.md?raw'
 import instrumentIntro from './research-instrument/index.md?raw'
 import instrumentTasks from './research-instrument/evaluation-tasks.md?raw'
 import instrumentInfo from './research-instrument/evaluation-information.md?raw'
+import { orderPages } from '../utils/navigation.js'
 
 export const contentTypes = ['User guide', 'Evaluation tasks', 'Evaluation information']
 
@@ -27,9 +28,9 @@ const sectionDefinitions = [
           { label: 'Introduction', path: '/ddr-public', content: publicIntro },
           { label: 'Prerequisites', path: '/ddr-public/prerequisites', content: publicPrerequisites },
           { label: 'Getting started', path: '/ddr-public/getting-started', content: publicGettingStarted },
-          { label: 'Troubleshooting', path: '/ddr-public/troubleshooting', content: publicTroubleshooting },
           { label: 'Finding a record in the archive', path: '/ddr-public/user-guide/finding-a-record', content: findingRecord },
           { label: 'Example documentation', path: '/ddr-public/example', content: example, hidden: true },
+          { label: 'Troubleshooting', path: '/ddr-public/troubleshooting', content: publicTroubleshooting },
         ],
       },
       {
@@ -68,13 +69,17 @@ const sectionDefinitions = [
   },
 ]
 
-export const sections = sectionDefinitions.map((section) => ({
-  ...section,
-  pages: section.groups.flatMap((group) =>
-    group.pages.map((page) => ({
-      ...page,
-      groupLabel: group.label,
-      contentType: group.label === 'Evaluation tasks' ? 'Evaluation task' : group.label,
-    })),
-  ),
-}))
+export const sections = sectionDefinitions.map((section) => {
+  const groups = section.groups.map((group) => ({ ...group, pages: orderPages(group) }))
+  return {
+    ...section,
+    groups,
+    pages: groups.flatMap((group) =>
+      group.pages.map((page) => ({
+        ...page,
+        groupLabel: group.label,
+        contentType: group.label === 'Evaluation tasks' ? 'Evaluation task' : group.label,
+      })),
+    ),
+  }
+})

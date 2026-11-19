@@ -1,57 +1,61 @@
-
 # Getting started
 
-This guide explains how to open the DDR Digital Archive, sign in when required and locate the application's main navigation.
+This guide explains how to open the DDR Digital Archive, sign in and find the tools used to explore archival records.
 
-## Open the digital archive
+## What you will learn
 
-1. Open your preferred web browser.
-2. Enter `https://ddrarchive.org` in the address bar.
-3. Wait for the application to load.
+You will learn how to:
 
-If the application requests authentication, follow the instructions below.
+- Access the DDR Digital Archive.
+- Sign in using the account details provided to you.
+- Open the **API** area.
+- Recognise the main sections used to explore archive information.
 
-## Sign in
+You do not need programming experience to follow this guide.
 
-1. Enter your registered email address in the **Email address** field.
-2. Enter your password in the **Password** field.
-3. Select **Continue**.
+## Before you begin
 
-```screenshot-placeholder
-Login form showing the email address, password and Continue controls.
-```
+You will need a computer with an internet connection, a web browser and the login details provided for the application.
 
-If your account requires further authentication, follow the instructions displayed on screen.
+## Open the DDR Digital Archive
 
-If you cannot remember your password, select **Reset password** and follow the instructions provided.
+1. Open your web browser.
+2. Go to [ddrarchive.org](https://ddrarchive.org).
+3. If the sign-in screen appears, enter your email address and password.
+4. Select **Continue**.
 
-## Navigate to the archive interface
+![Sign-in form with email address, password, reset password and continue controls](/images/ddr-public/01-01-login.png "Sign-in form.")
 
-Once you have signed in, the application displays its main page.
+**What happens next?** After a successful sign-in, the DDR Public Preview page appears.
 
-Locate the navigation bar at the top of the screen.
+If you cannot sign in, email Graham Newman.
 
-1. Find **API** in the main navigation.
-2. Select **API** to open the relevant interface.
+## Open the API area
 
-```screenshot-placeholder
-Main navigation bar showing Home, Research, Insights and API.
-```
+1. Locate the main navigation bar at the top of the DDR Public Preview page.
+2. Select **API**.
 
-The interface that opens provides access to the next stage of exploring the archive.
+![Main navigation showing Home, Research, Insights and API](/images/ddr-public/01-02-main-navigation.png "Main navigation showing Home, Research, Insights and API.")
 
-```screenshot-placeholder
-The API landing page after successful navigation. Capture and verify against the current application.
-```
+**What happens next?** A page titled **DDR API landing** opens.
 
-## Understanding the interface
+![DDR API landing page showing its navigation and introduction](/images/ddr-public/01-03-api-landing.png "DDR API landing page.")
 
-The application contains navigation controls and areas for accessing information.
+## Understand the API navigation
 
-The following guides will explain these areas individually and show how to use them.
+The API area provides access to archive information through four tabs:
 
-You do not need to understand the technical systems behind the archive to follow the instructions.
+- **Getting started**–introductory information about the API.
+- **GraphQL sandbox**–an interactive area for running a prepared request and viewing its results.
+- **Presets and snippets**–ready-made examples for exploring archive information.
+- **Glossary**–reference information about terminology.
+
+An *API* is a way for an application to request information from another system. Here, you can use ready-made examples rather than writing those requests yourself.
+
+The **GraphQL sandbox** is the part of the website where you can run a prepared request and see the information returned by the archive.
+
+![API navigation tabs: Getting started, GraphQL sandbox, Presets and snippets, and Glossary](/images/ddr-public/01-04-api-tabs.png "The four API navigation tabs.")
 
 ## What to do next
 
-Continue to the next guide to learn how to explore the available archival information.
+Continue to [Finding a record in the archive](/ddr-public/user-guide/finding-a-record) to use a prepared archive-record example and open one of the documents it returns.

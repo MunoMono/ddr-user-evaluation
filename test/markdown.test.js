@@ -2,7 +2,7 @@ import assert from 'node:assert/strict'
 import test from 'node:test'
 import { unified } from 'unified'
 import remarkParse from 'remark-parse'
-import { figureNumbers, headingIds, imageUrl, pageContents } from '../src/utils/markdown.js'
+import { figureNumbers, headingIds, imageUrl, pageContents, standaloneLinks } from '../src/utils/markdown.js'
 
 test('contents and rendered heading IDs agree for formatted and duplicate headings', async () => {
   const markdown = '# Title\n\n## **First** step\n\n### Detail\n\n## First step\n\n## Résumé'
@@ -22,6 +22,18 @@ test('heading IDs remain unique across separately rendered home sections', async
   const processor = unified().use(remarkParse).use(headingIds, { precedingMarkdown: '## Details' })
   const tree = await processor.run(processor.parse('## Details'))
   assert.equal(tree.children[0].data.hProperties.id, 'details-1')
+})
+
+test('standalone links are marked without changing inline, heading or image links', async () => {
+  const markdown = '[Standalone](/first)\n\nText [inline](/second).\n\n- [List link](/third)\n\n## [Heading](/fourth)\n\n[![Image](/image.png)](/fifth)\n\n[Reference][ref]\n\n[ref]: /sixth'
+  const processor = unified().use(remarkParse).use(standaloneLinks)
+  const tree = await processor.run(processor.parse(markdown))
+  assert.equal(tree.children[0].children[0].data.hProperties['data-standalone'], true)
+  assert.equal(tree.children[1].children[1].data, undefined)
+  assert.equal(tree.children[2].children[0].children[0].children[0].data.hProperties['data-standalone'], true)
+  assert.equal(tree.children[3].children[0].data, undefined)
+  assert.equal(tree.children[4].children[0].data, undefined)
+  assert.equal(tree.children[5].children[0].data.hProperties['data-standalone'], true)
 })
 
 test('local screenshot URLs respect the deployed base without changing other URLs', () => {

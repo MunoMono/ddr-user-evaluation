@@ -212,16 +212,32 @@
     margin: 0 0 $spacing-05;
   }
 
-  ul, ol {
+  ol {
     padding-left: $spacing-07;
+    list-style: decimal;
+  }
+
+  ul {
+    padding-inline-start: $spacing-05;
+    list-style: none;
+
+    > li {
+      position: relative;
+
+      &::before {
+        position: absolute;
+        content: '\2013';
+        inset-inline-start: -$spacing-05;
+      }
+    }
   }
 
   li + li {
     margin-top: $spacing-03;
   }
 
-  a {
-    color: var(--cds-link-primary);
+  .cds--link {
+    font: inherit;
   }
 
   blockquote {

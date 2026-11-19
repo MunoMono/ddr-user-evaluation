@@ -3,9 +3,9 @@ import test from 'node:test'
 import { parseHomeContent } from '../src/utils/home.js'
 
 const sections = [{ path: '/first' }, { path: '/second' }]
-const markdown = `# Welcome
+const markdown = `# Hero heading
 
-## Explore
+Hero introduction.
 
 <!-- application-tiles -->
 ### [First](/first)
@@ -22,9 +22,9 @@ Second description.
 - **Guide**–Instructions.
 `
 
-test('home Markdown separates tile content from surrounding sections', () => {
+test('home Markdown separates tile content from the following sections', () => {
   const result = parseHomeContent(markdown, sections)
-  assert.match(result.introduction, /## Explore/)
+  assert.match(result.introduction, /# Hero heading\n\nHero introduction\./)
   assert.deepEqual(result.tiles, [
     { path: '/first', label: 'First', description: 'First description.' },
     { path: '/second', label: 'Second', description: 'Second description.' },

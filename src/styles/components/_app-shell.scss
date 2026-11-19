@@ -1,11 +1,16 @@
 @use '@carbon/react/scss/spacing' as *;
 @use '@carbon/react/scss/type' as *;
 @use '@carbon/react/scss/breakpoint' as *;
+@use '@carbon/react/scss/colors' as *;
 
 .app-shell {
   min-height: 100vh;
   display: flex;
   flex-direction: column;
+}
+
+.app-shell__header.cds--header.cds--g100 {
+  background-color: $black-100;
 }
 
 .app-shell__content.cds--content {

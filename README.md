@@ -29,13 +29,13 @@ Use the Carbon 11 components, theme, spacing and typography tokens. Put componen
 
 Each application has three groups: **User guide**, **Evaluation tasks** and **Evaluation information**. Illustrative evaluation and procedural pages remain placeholders, not approved evaluation materials.
 
-The landing-page copy is in `src/content/home.md`. Between the `application-tiles` markers, provide one level-three linked heading and one paragraph for each application route in `src/content/navigation.js`. These entries become the clickable application tiles.
+The landing-page hero image is `public/images/uat_landinghero.jpg`. Its heading and introduction, along with the remaining landing-page copy, are in `src/content/home.md`. Between the `application-tiles` markers, provide one level-three linked heading and one paragraph for each application route in `src/content/navigation.js`. These entries become the clickable application tiles.
 
 To create a page:
 
 1. Add a Markdown file under the appropriate application in `src/content/`. Use British English, one level-one heading for its title and level-two headings for its sections. These headings automatically populate “On this page”.
-2. Import the file with Vite's `?raw` suffix in `src/content/navigation.js`, then add its `label`, `path` and `content` to the appropriate group's `pages` array. The order of pages in that array controls navigation and previous/next links. The first User guide page should retain the application's existing root path. Set `hidden: true` to retain an existing page's direct URL without including it in navigation, search or previous/next links.
-3. Use a root-relative route for an internal Markdown link, for example `[Introduction](/ddr-public)`, and an `https://` URL for an external link. Check links in the local preview.
+2. Import the file with Vite's `?raw` suffix in `src/content/navigation.js`, then add its `label`, `path` and `content` to the appropriate group's `pages` array. The order of pages in that array controls navigation and previous/next links, except that a User guide page labelled `Troubleshooting` is always placed last. The first User guide page should retain the application's existing root path. Set `hidden: true` to retain an existing page's direct URL without including it in navigation, search or previous/next links.
+3. Use a root-relative route for an internal Markdown link, for example `[Introduction](/ddr-public)`, and an `https://` URL for an external link. A link on its own is styled as a standalone link with an arrow; links within text are inline. Links to the DDR Digital Archive home page open in a new tab. Check links in the local preview.
 4. Run `npm run dev`, review the page in both themes and on a small screen, then run `npm test` and `npm run build`.
 
 For a procedure, use the relevant parts of the example “Finding a record in the archive”: introduction, what the reader will learn, prerequisites, numbered steps, screenshots, expected result and troubleshooting. Omit headings that are not useful. Use Markdown blockquotes for tips, notes and warnings.
@@ -44,7 +44,7 @@ For an evaluation task, register it in **Evaluation tasks**. State the task iden
 
 For DDR public's “Explore an archival record”, the participant-facing task is `src/content/ddr-public/evaluation-tasks/explore-an-archival-record/task.md`. Its separate draft procedure is `src/content/ddr-public/evaluation-tasks/explore-an-archival-record/standard-operating-procedure.md`, with screenshots in `public/images/ddr-public/evaluation-tasks/explore-an-archival-record/`. The procedure is not registered as a website page or linked from the task. Review its content and its suitability for participants before registering it as a User guide page. All files in this repository are public, including unregistered drafts. Use the same task-specific content and image folder pattern for future evaluation tasks.
 
-The table of contents and reading pane scroll independently; on very short mobile screens the page scrolls normally. A section navigation rail follows the reading position and highlights the current level-two heading; its links also support direct section URLs. Search is local to the browser and searches application and group names, page titles and Markdown text. Registered pages are included automatically.
+The table of contents is available on the landing page and documentation pages. It and the reading pane scroll independently; on very short mobile screens the page scrolls normally. A section navigation rail on documentation pages follows the reading position and highlights the current level-two heading; its links also support direct section URLs. Search is local to the browser and searches application and group names, page titles and Markdown text. Registered pages are included automatically.
 
 ### Screenshots and annotations
 
@@ -78,7 +78,7 @@ Coordinates are whole percentages from the image's left and top edges, from 0 to
 
 ### Metadata and evaluation snapshots
 
-Each navigation entry may include an optional `metadata` object with `id`, `applicationVersion`, `documentationVersion` and `lastReviewed` fields. The application and content type come from the navigation group. Add only known, reviewed values, for example:
+Each navigation entry may include an optional `metadata` object with `id`, `applicationVersion`, `documentationVersion` and `lastReviewed` fields. These fields are displayed when provided. Add only known, reviewed values, for example:
 
 ```js
 metadata: { id: 'approved-page-id', documentationVersion: 'approved-version', lastReviewed: 'YYYY-MM-DD' }
