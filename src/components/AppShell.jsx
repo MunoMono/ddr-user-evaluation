@@ -29,14 +29,14 @@ export default function AppShell({ children, theme, toggleTheme }) {
   return (
     <div className={`app-shell${isDocumentation ? ' app-shell--documentation' : ''}`}>
       <SkipToContent href="#main-content" />
-      <Header aria-label="Graham Newman RCA PhD">
+      <Header aria-label="RCA PhD">
         <HeaderMenuButton
           aria-label={expanded ? 'Close navigation menu' : 'Open navigation menu'}
           isActive={expanded}
           aria-expanded={expanded}
           onClick={() => setExpanded(!expanded)}
         />
-        <HeaderName as={Link} to="/" prefix="">Graham Newman RCA PhD</HeaderName>
+        <HeaderName as={Link} to="/" prefix="">RCA PhD</HeaderName>
         <HeaderNavigation aria-label="Primary navigation">
           {sections.map((section) => (
             <HeaderMenuItem key={section.path} as={Link} to={section.path}
