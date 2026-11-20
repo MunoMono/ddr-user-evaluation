@@ -11,6 +11,10 @@
 
 .app-shell__header.cds--header.cds--g100 {
   background-color: $black-100;
+
+  .cds--header__nav a.cds--header__menu-item:not(:hover):not(:active) {
+    background-color: $black-100;
+  }
 }
 
 .app-shell__content.cds--content {

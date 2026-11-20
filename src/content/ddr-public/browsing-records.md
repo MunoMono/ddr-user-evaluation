@@ -1,4 +1,4 @@
-# Finding a record in the archive
+# Browsing records in the archive
 
 This guide shows how to use a prepared example to find documents associated with an archival record. It follows the **Design Education Unit | DEU** example demonstrated in the DDR Digital Archive.
 
@@ -20,7 +20,7 @@ Sign in to the [DDR Digital Archive](https://ddrarchive.org) and open **API** fr
 
 If you have not used this area before, read [Getting started](/ddr-public/getting-started) first.
 
-## Find a prepared archive-record example
+## Browsing a prepared archive preset example
 
 1. On the **DDR API landing** page, select **Presets and snippets**.
 2. Scroll to the **Archive records** section.

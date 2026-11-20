@@ -3,7 +3,7 @@ import publicPrerequisites from './ddr-public/prerequisites.md?raw'
 import publicGettingStarted from './ddr-public/getting-started.md?raw'
 import publicTroubleshooting from './ddr-public/troubleshooting.md?raw'
 import example from './ddr-public/example.md?raw'
-import findingRecord from './ddr-public/finding-a-record.md?raw'
+import browsingRecords from './ddr-public/browsing-records.md?raw'
 import exploringRecord from './ddr-public/evaluation-tasks/explore-an-archival-record/task.md?raw'
 import aboutEvaluation from './ddr-public/about-the-evaluation.md?raw'
 import adminIntro from './ddr-admin/index.md?raw'
@@ -28,7 +28,7 @@ const sectionDefinitions = [
           { label: 'Introduction', path: '/ddr-public', content: publicIntro },
           { label: 'Prerequisites', path: '/ddr-public/prerequisites', content: publicPrerequisites },
           { label: 'Getting started', path: '/ddr-public/getting-started', content: publicGettingStarted },
-          { label: 'Finding a record in the archive', path: '/ddr-public/user-guide/finding-a-record', content: findingRecord },
+          { label: 'Browsing records in the archive', path: '/ddr-public/user-guide/finding-a-record', content: browsingRecords },
           { label: 'Example documentation', path: '/ddr-public/example', content: example, hidden: true },
           { label: 'Troubleshooting', path: '/ddr-public/troubleshooting', content: publicTroubleshooting },
         ],

@@ -38,7 +38,7 @@ To create a page:
 3. Use a root-relative route for an internal Markdown link, for example `[Introduction](/ddr-public)`, and an `https://` URL for an external link. A link on its own is styled as a standalone link with an arrow; links within text are inline. Links to the DDR Digital Archive home page open in a new tab. Check links in the local preview.
 4. Run `npm run dev`, review the page in both themes and on a small screen, then run `npm test` and `npm run build`.
 
-For a procedure, use the relevant parts of the example “Finding a record in the archive”: introduction, what the reader will learn, prerequisites, numbered steps, screenshots, expected result and troubleshooting. Omit headings that are not useful. Use Markdown blockquotes for tips, notes and warnings.
+For a procedure, use the relevant parts of the example “Browsing records in the archive”: introduction, what the reader will learn, prerequisites, numbered steps, screenshots, expected result and troubleshooting. Omit headings that are not useful. Use Markdown blockquotes for tips, notes and warnings.
 
 For an evaluation task, register it in **Evaluation tasks**. State the task identifier, context, objective, activity and appropriate prerequisites without teaching the actions or answers under investigation. Review any links and previous/next ordering for methodological impact. The previous/next navigation bar stays within the same content group and is omitted when there are no adjacent pages. For participant-facing arrangements, add a page to **Evaluation information** only after its wording has been reviewed.
 
