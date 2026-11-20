@@ -1,7 +1,7 @@
 import { lazy, Suspense, useEffect, useState } from 'react'
 import { Button, Column, GlobalTheme, Grid, InlineLoading } from '@carbon/react'
 import { ArrowRight } from '@carbon/icons-react'
-import { Link, Route, Routes } from 'react-router-dom'
+import { Link, Navigate, Route, Routes, useLocation } from 'react-router-dom'
 import AppShell from './components/AppShell.jsx'
 import { sections } from './content/navigation.js'
 
@@ -27,6 +27,11 @@ function NotFound() {
       </Column>
     </Grid>
   )
+}
+
+function BrowsingRecordsRedirect() {
+  const { search, hash } = useLocation()
+  return <Navigate to={{ pathname: '/ddr-public/user-guide/browsing-records', search, hash }} replace />
 }
 
 export default function App() {
@@ -55,6 +60,7 @@ export default function App() {
                   </Suspense>
                 } />
             )))}
+            <Route path="/ddr-public/user-guide/finding-a-record" element={<BrowsingRecordsRedirect />} />
             <Route path="*" element={<NotFound />} />
           </Routes>
         </AppShell>

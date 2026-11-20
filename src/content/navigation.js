@@ -28,7 +28,7 @@ const sectionDefinitions = [
           { label: 'Introduction', path: '/ddr-public', content: publicIntro },
           { label: 'Prerequisites', path: '/ddr-public/prerequisites', content: publicPrerequisites },
           { label: 'Getting started', path: '/ddr-public/getting-started', content: publicGettingStarted },
-          { label: 'Browsing records in the archive', path: '/ddr-public/user-guide/finding-a-record', content: browsingRecords },
+          { label: 'Browsing records in the archive', path: '/ddr-public/user-guide/browsing-records', content: browsingRecords },
           { label: 'Example documentation', path: '/ddr-public/example', content: example, hidden: true },
           { label: 'Troubleshooting', path: '/ddr-public/troubleshooting', content: publicTroubleshooting },
         ],

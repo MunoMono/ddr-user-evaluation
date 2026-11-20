@@ -58,4 +58,4 @@ The **GraphQL sandbox** is the part of the website where you can run a prepared 
 
 ## What to do next
 
-Continue to [Browsing records in the archive](/ddr-public/user-guide/finding-a-record) to use a prepared archive-record example and open one of the documents it returns.
+Continue to [Browsing records in the archive](/ddr-public/user-guide/browsing-records) to use a prepared archive-record example and open one of the documents it returns.
